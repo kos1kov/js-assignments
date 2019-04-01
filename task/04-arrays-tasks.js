@@ -271,7 +271,7 @@ function getSecondItems(arr) {
     let newArr = []
     arr.map((element, index) => {
         if ( index % 2 != 0) {
-            newArr.push(element)
+            newArr.push(element);
         };
     });
     return newArr;
@@ -298,11 +298,11 @@ function propagateItemsByPositionIndex(arr) {
         return arr;
     }
     else {
-        let newArr = []
+        let newArr = [];
         arr.map((element, index) => {
             let i = 0
             do {
-                newArr.push(element)
+                newArr.push(element);
                 i++;
             } while (i <= index)
         });
@@ -347,17 +347,16 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-    var max = 0;
 
     let newArr = []
     arr.map(elem => {
-        if (typeof elem == "number") {
-            newArr.push(elem)
+        if (typeof elem == "number" && elem > 0) {
+            newArr.push(elem);
         }
     });
-    newArr.filter((value, index) => value > max ? max = value : max);
+    
 
-    return max;
+    return newArr.length;
    throw new Error('Not implemented');
 }
  
@@ -375,7 +374,7 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-    var digits = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+    let digits = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
     return arr.sort((a, b) => digits.indexOf(a) - digits.indexOf(b));
    throw new Error('Not implemented');
 }
@@ -514,11 +513,7 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-    return new Array(n).fill(new Array(n).fill(0)).map(function (value, indexStr) {
-        return value.map((valueInner, indexCol) =>
-            indexStr == indexCol ? 1 : 0
-        )
-    });
+
    throw new Error('Not implemented');
 }
 
@@ -557,10 +552,9 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-    function onlyUnique(value, index, self) {
-        return self.indexOf(value) === index;
-    }
-    var unique = arr.filter(onlyUnique); 
+
+    var unique = arr.filter((value, index, newArr) => newArr.indexOf(value) === index);
+    return unique;
    throw new Error('Not implemented');
 }
 
@@ -629,7 +623,6 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-
     throw new Error('Not implemented');
 }
 

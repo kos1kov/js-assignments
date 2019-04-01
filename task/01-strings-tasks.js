@@ -203,14 +203,14 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    var top1 = '┌';
-    var top2 = '┐';
-    var bot1 = '└';
-    var bot2 = '┘';
-    var middle = '─';
-    var innerChar = " ";
-    var collomn = "│";
-    var line = '\n';
+    let top1 = '┌';
+    let top2 = '┐';
+    let bot1 = '└';
+    let bot2 = '┘';
+    let middle = '─';
+    let innerChar = " ";
+    let collomn = "│";
+    let line = '\n';
     return top1 + middle.repeat(width - 2) + top2 + line +
         (collomn + innerChar.repeat(width - 2) + collomn + line).repeat(height - 2) +
         bot1 + middle.repeat(width - 2) + bot2+line;
@@ -237,7 +237,7 @@ function getRectangleString(width, height) {
 function encodeToRot13(str) {
     var str_ = "";
 
-    for (var i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         if ((str.charAt(i).charCodeAt()) > 109) {
             str_ += String.fromCharCode(str.charAt(i).charCodeAt() + 13 - 26);
         } else if (77 < (str.charAt(i).charCodeAt()) && (str.charAt(i).charCodeAt()) <= 90) {
