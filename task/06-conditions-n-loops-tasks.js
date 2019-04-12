@@ -74,7 +74,7 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-    var n = (n2 - n1 + 1);
+    let n = (n2 - n1 + 1);
     return ( n * (n1 + n2) / 2);
 
     throw new Error('Not implemented');
@@ -204,7 +204,7 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    for (var i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length; i++) {
         if ((str.indexOf(str[i]) == i) && (str.indexOf(str[i], i + 1) == -1))
             return str[i]
     }
@@ -235,7 +235,7 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    var result = "";
+   let result = "";
     if (isStartIncluded)
         result += "[";
     else
@@ -311,11 +311,11 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    var sum = 0;
-    var num = ccn.toString();
-    var length = num.length;
-    var temp;
-    for (var i = 1; i <= length; i++) {
+    let sum = 0;
+   let num = ccn.toString();
+    let length = num.length;
+    let temp;
+    for (let i = 1; i <= length; i++) {
         temp = Number(num[length - i]);
         if (i % 2 === 0)
             temp *= 2;
@@ -382,7 +382,7 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    var len = str.length;
+    let len = str.length;
     while (len) {
         str = str.replace(/(\[])|(\(\))|(\{})|(<>)/, '');
         len--;
@@ -430,7 +430,7 @@ function timespanToHumanString(startDate, endDate) {
     const day = 24 * hour;
     const month = 30 * day;
     const year = 12 * month;
-    const period = endDate - startDate;
+    const period = (endDate - startDate - 0.001);
     if (period <= 45 * second) {
         return 'a few seconds ago';
     }
@@ -438,31 +438,31 @@ function timespanToHumanString(startDate, endDate) {
         return 'a minute ago';
     }
     else if (period <= 45 * minute) {
-        return Math.round((period - 0.001) / minute) + ' minutes ago';
+        return Math.round((period) / minute) + ' minutes ago';
     }
     else if (period <= 90 * minute) {
         return 'an hour ago';
     }
     else if (period <= 22 * hour) {
-        return Math.round((period - 0.001) / hour) + ' hours ago';
+        return Math.round((period) / hour) + ' hours ago';
     }
     else if (period <= 36 * hour) {
         return 'a day ago';
     }
     else if (period <= 25 * day) {
-        return Math.round((period - 0.001) / day) + ' days ago';
+        return Math.round((period ) / day) + ' days ago';
     }
     else if (period <= 45 * day) {
         return 'a month ago';
     }
     else if (period <= 345 * day) {
-        return Math.round((period - 0.001) / month) + ' months ago';
+        return Math.round((period ) / month) + ' months ago';
     }
     else if (period <= 545 * day) {
         return 'a year ago';
     }
     else {
-        return Math.round((period - 0.001) / year) + ' years ago';
+        return Math.round((period) / year) + ' years ago';
     }
     throw new Error('Not implemented');
 }
@@ -506,6 +506,30 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
+    let path = "";
+    let minimum = Infinity;
+    let first = new Array(pathes.length)
+    for(let i = 0; i<pathes.length; i++){
+        first[i] = pathes[i].split('/');
+        if(minimum<first[i].length){
+            minimum = first[i].length;
+        }
+    }
+    for(let i=0;i<minimum;i++){
+        let temp = first[0][i];
+        let j = 1;
+        for(j = 1;j<first.length;j++){
+            if(first[j][i] != temp){
+                break;
+            }
+        }
+        if (j != first.length)
+        {
+            break;
+        }
+        path += temp + "/"; 
+    }
+    return path;
     throw new Error('Not implemented');
 }
 
@@ -529,6 +553,19 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
+    let m1Rows = m1.length, m1Cols = m1[0].length,
+    m2Cols = m2[0].length,
+    arr = new Array(m1Rows);
+    for (var i = 0; i < m1Rows; ++i) {
+        arr[i] = new Array(m2Cols);
+        for (var j = 0; j < m2Cols; ++j) {
+            arr[i][j] = 0;
+            for (let k = 0; k < m1Cols; ++k) {
+                arr[i][j] += m1[i][k] * m2[k][j];
+            }
+        }
+    }
+    return arr;
     throw new Error('Not implemented');
 }
 

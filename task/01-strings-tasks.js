@@ -235,13 +235,13 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    var str_ = "";
-
+    let str_ = "";
+    const abc = 26;
     for (let i = 0; i < str.length; i++) {
         if ((str.charAt(i).charCodeAt()) > 109) {
-            str_ += String.fromCharCode(str.charAt(i).charCodeAt() + 13 - 26);
+            str_ += String.fromCharCode(str.charAt(i).charCodeAt() + 13 - abc);
         } else if (77 < (str.charAt(i).charCodeAt()) && (str.charAt(i).charCodeAt()) <= 90) {
-            str_ += String.fromCharCode(str.charAt(i).charCodeAt() + 13 - 26);
+            str_ += String.fromCharCode(str.charAt(i).charCodeAt() + 13 - abc);
         } else if ((str.charAt(i).charCodeAt()) < 64) {
             str_ += String.fromCharCode(str.charAt(i).charCodeAt());
         } else {
@@ -299,7 +299,7 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    var arr = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    let arr = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
         'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
         'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
         'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];

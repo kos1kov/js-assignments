@@ -513,8 +513,12 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-
-   throw new Error('Not implemented');
+    let newArr = new Array(n).fill(null);
+    return newArr.map(function(item,i) { 
+     item = new Array(n).fill(0);
+     item[i] = 1;
+     return item;
+   });
 }
 
 /**
@@ -623,7 +627,8 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-    throw new Error('Not implemented');
+    indexes.map(x => arr = arr[x]);
+    return arr;
 }
 
 
@@ -646,6 +651,11 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
+    let middle = Math.round(arr.length / 2);
+    if (arr.length % 2 == 1)
+    return arr.slice(middle).concat(arr[middle - 1]).concat(arr.slice(0, middle - 1));
+  else
+    return arr.slice(middle).concat(arr.slice(0, middle));
     throw new Error('Not implemented');
 }
 
